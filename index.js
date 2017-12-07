@@ -2,13 +2,11 @@
 const express = require('express')
 const request = require('request')
 const bodyParser = require('body-parser')
-const apiai = require('apiai')
+const apiAi = require('./apiAi')
 
 const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-
-apiaiDealinga = apiai(APIAI_TOKEN)
 
 // Index
 app.get('/', (req, res) => {
