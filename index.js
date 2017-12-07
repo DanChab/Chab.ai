@@ -4,9 +4,6 @@ const request = require('request')
 const bodyParser = require('body-parser')
 const apiai = require('apiai')
 
-// DialogFlow token
-const APIAI_TOKEN = process.env.DEALINGA_TOKEN
-
 const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -35,8 +32,14 @@ app.post('/webhook', (req, res) => {
   if (req.body.object === 'page') {
     // Iterate over each entry
     // There may be multiple entries if batched
-    IntersectionObserverEntry
+    entry.body.forEach((entry) => {
+      // Iterate over each messaging event
+      entry.messaging.forEach((event) => {
+        if (event.message  && event.message.text) {
+          receivedMessage(event);
+        }
+    })
+  })
+res.sendStatus(200).end()
   }
 })
-
-
