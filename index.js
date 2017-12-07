@@ -43,3 +43,18 @@ app.post('/webhook', (req, res) => {
 res.sendStatus(200).end()
   }
 })
+
+/* Webhook for API.ai to get response*/
+app.post('/ai', (req, res) => {
+  console.log('*** Webhook for DialogFlow query ***')
+  console.log(req.body.result)
+
+  if (req.body.result.action === 'salling') {
+    console.log('*** salling ***')
+    // Do somthing based on the actions
+  }
+
+  const server = app.listen(process.env.PORT || 5000, () => {
+    console.log('Server listening on port %d in %s mode', server.address().port, app.settings.env)
+  })
+})
